@@ -15,16 +15,6 @@
         content="#0b0f14"
     >
 
-    <meta
-        name="mobile-web-app-capable"
-        content="yes"
-    >
-
-    <meta
-        name="apple-mobile-web-app-capable"
-        content="yes"
-    >
-
     <title>My App</title>
 
 
@@ -37,13 +27,11 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-
         html,
         body {
             width: 100%;
             height: 100%;
         }
-
 
         body {
 
@@ -54,18 +42,16 @@
 
             background: #0b0f14;
 
-            color: #ffffff;
+            color: #fff;
 
             overflow: hidden;
-
-            -webkit-font-smoothing: antialiased;
 
         }
 
 
-        /* =========================================
+        /* ================================
            APP
-        ========================================= */
+        ================================= */
 
         .app {
 
@@ -78,7 +64,6 @@
             overflow: hidden;
 
             background:
-
                 radial-gradient(
                     circle at 50% 45%,
                     #26313c 0%,
@@ -89,9 +74,9 @@
         }
 
 
-        /* =========================================
+        /* ================================
            SCREEN
-        ========================================= */
+        ================================= */
 
         .screen {
 
@@ -111,15 +96,13 @@
 
 
         .screen.active {
-
             display: flex;
-
         }
 
 
-        /* =========================================
+        /* ================================
            LOGIN
-        ========================================= */
+        ================================= */
 
         .login-box {
 
@@ -138,11 +121,7 @@
 
             font-weight: 700;
 
-            color: #ffffff;
-
             margin-bottom: 10px;
-
-            letter-spacing: 0.5px;
 
         }
 
@@ -164,9 +143,9 @@
         }
 
 
-        /* =========================================
+        /* ================================
            INPUT
-        ========================================= */
+        ================================= */
 
         .input-box {
 
@@ -206,11 +185,9 @@
                     0.07
                 );
 
-            color: #ffffff;
+            color: #fff;
 
             font-size: 15px;
-
-            transition: 0.2s;
 
         }
 
@@ -249,9 +226,9 @@
         }
 
 
-        /* =========================================
+        /* ================================
            LOGIN BUTTON
-        ========================================= */
+        ================================= */
 
         .login-button {
 
@@ -265,17 +242,15 @@
 
             border-radius: 14px;
 
-            background: #ffffff;
+            background: #fff;
 
-            color: #111111;
+            color: #111;
 
             font-size: 16px;
 
             font-weight: 700;
 
             cursor: pointer;
-
-            transition: 0.2s;
 
         }
 
@@ -289,16 +264,14 @@
 
         .login-button:disabled {
 
-            opacity: 0.50;
-
-            cursor: not-allowed;
+            opacity: 0.5;
 
         }
 
 
-        /* =========================================
+        /* ================================
            ERROR
-        ========================================= */
+        ================================= */
 
         .error-message {
 
@@ -308,16 +281,14 @@
 
             font-size: 13px;
 
-            line-height: 1.4;
-
             color: #ff7070;
 
         }
 
 
-        /* =========================================
+        /* ================================
            MAIN
-        ========================================= */
+        ================================= */
 
         .main-content {
 
@@ -336,9 +307,9 @@
         }
 
 
-        /* =========================================
-           PROFILE IMAGE
-        ========================================= */
+        /* ================================
+           PROFILE
+        ================================= */
 
         .profile-image {
 
@@ -384,10 +355,6 @@
         }
 
 
-        /* =========================================
-           PROFILE NAME
-        ========================================= */
-
         .profile-name {
 
             margin-top: 22px;
@@ -396,47 +363,14 @@
 
             font-weight: 600;
 
-            color: #ffffff;
-
-            letter-spacing: 0.5px;
-
-            text-shadow:
-                0 4px 15px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.40
-                );
+            color: #fff;
 
         }
 
 
-        /* =========================================
-           IMAGE LOADING
-        ========================================= */
-
-        .profile-image.loading-image {
-
-            opacity: 0.55;
-
-        }
-
-
-        /* =========================================
-           IMAGE NOT FOUND
-        ========================================= */
-
-        .profile-image.image-error {
-
-            opacity: 0.40;
-
-        }
-
-
-        /* =========================================
-           LOADING OVERLAY
-        ========================================= */
+        /* ================================
+           LOADING
+        ================================= */
 
         .loading {
 
@@ -462,21 +396,13 @@
 
             backdrop-filter: blur(5px);
 
-            -webkit-backdrop-filter: blur(5px);
-
         }
 
 
         .loading.active {
-
             display: flex;
-
         }
 
-
-        /* =========================================
-           LOADER
-        ========================================= */
 
         .loader {
 
@@ -493,7 +419,7 @@
                     0.20
                 );
 
-            border-top-color: #ffffff;
+            border-top-color: #fff;
 
             border-radius: 50%;
 
@@ -506,34 +432,21 @@
         @keyframes spin {
 
             to {
-
-                transform:
-                    rotate(360deg);
-
+                transform: rotate(360deg);
             }
 
         }
 
 
-        /* =========================================
+        /* ================================
            MOBILE
-        ========================================= */
+        ================================= */
 
         @media (max-width: 480px) {
 
-            .screen {
-
-                padding: 20px;
-
-            }
-
-
             .app-title {
-
                 font-size: 29px;
-
             }
-
 
             .profile-image {
 
@@ -543,36 +456,9 @@
 
             }
 
-
             .profile-name {
 
                 font-size: 23px;
-
-            }
-
-        }
-
-
-        /* =========================================
-           SMALL HEIGHT
-        ========================================= */
-
-        @media (max-height: 600px) {
-
-            .profile-image {
-
-                width: 115px;
-
-                height: 115px;
-
-            }
-
-
-            .profile-name {
-
-                margin-top: 16px;
-
-                font-size: 21px;
 
             }
 
@@ -589,9 +475,9 @@
 <div class="app">
 
 
-    <!-- =========================================
+    <!-- =================================
          LOGIN SCREEN
-    ========================================== -->
+    ================================== -->
 
     <section
         id="loginScreen"
@@ -611,8 +497,6 @@
             </p>
 
 
-            <!-- USERNAME -->
-
             <div class="input-box">
 
                 <input
@@ -627,8 +511,6 @@
             </div>
 
 
-            <!-- PASSWORD -->
-
             <div class="input-box">
 
                 <input
@@ -641,8 +523,6 @@
             </div>
 
 
-            <!-- LOGIN -->
-
             <button
                 type="button"
                 id="loginButton"
@@ -652,12 +532,9 @@
             </button>
 
 
-            <!-- ERROR -->
-
             <div
                 id="errorMessage"
                 class="error-message"
-                aria-live="polite"
             ></div>
 
 
@@ -667,9 +544,9 @@
 
 
 
-    <!-- =========================================
+    <!-- =================================
          MAIN SCREEN
-    ========================================== -->
+    ================================== -->
 
     <section
         id="mainScreen"
@@ -679,16 +556,12 @@
         <div class="main-content">
 
 
-            <!-- PROFILE IMAGE -->
-
             <img
                 id="profileImage"
                 class="profile-image"
                 alt="Profile Picture"
             >
 
-
-            <!-- NAME -->
 
             <div
                 id="profileName"
@@ -704,14 +577,13 @@
 
 
 
-    <!-- =========================================
+    <!-- =================================
          LOADING
-    ========================================== -->
+    ================================== -->
 
     <div
         id="loading"
         class="loading"
-        aria-hidden="true"
     >
 
         <div class="loader"></div>
@@ -729,7 +601,7 @@
 
 
 // ======================================================
-// GOOGLE APPS SCRIPT API
+// GOOGLE APPS SCRIPT URL
 // ======================================================
 
 const API_URL =
@@ -737,82 +609,46 @@ const API_URL =
 
 
 // ======================================================
-// GITHUB CONFIGURATION
+// GITHUB SETTINGS
 // ======================================================
 //
-// CHANGE ONLY THESE TWO VALUES
+// GitHub Username:
+// CDT248
+//
+// IMPORTANT:
+// YOUR-REPOSITORY-NAME এর জায়গায়
+// আপনার repository-এর নাম লিখবেন.
 //
 // Example:
+// যদি repository হয়:
 //
-// https://github.com/net24bd/MY-AI
+// https://github.com/CDT248/my-app
 //
-// Username:
-// net24bd
+// তাহলে:
 //
-// Repository:
-// MY-AI
+// GITHUB_USERNAME = "CDT248";
+// GITHUB_REPO = "my-app";
 // ======================================================
 
 const GITHUB_USERNAME =
-"net24bd";
+"CDT248";
 
 
 const GITHUB_REPO =
-"MY-AI";
+"YOUR-REPOSITORY-NAME";
 
-
-// ======================================================
-// GITHUB BRANCH
-// ======================================================
 
 const GITHUB_BRANCH =
 "main";
 
-
-// ======================================================
-// PROFILE FOLDER
-// ======================================================
 
 const PROFILE_FOLDER =
 "profile";
 
 
 // ======================================================
-// PROFILE IMAGE EXTENSIONS
+// LOCAL STORAGE
 // ======================================================
-//
-// First JPG
-// Then JPEG
-// Then PNG
-// Then WEBP
-// ======================================================
-
-const IMAGE_EXTENSIONS = [
-
-    ".jpg",
-
-    ".jpeg",
-
-    ".png",
-
-    ".webp"
-
-];
-
-
-// ======================================================
-// DEFAULT IMAGE
-// ======================================================
-
-const DEFAULT_IMAGE =
-"";
-
-
-/*
-========================================================
-LOCAL STORAGE
-========================================================
-*/
 
 const STORAGE_LOGIN =
 "myApp_loggedIn";
@@ -881,14 +717,14 @@ document.getElementById(
 
 
 // ======================================================
-// LOADING CONTROL
+// LOADING
 // ======================================================
 
 function setLoading(
-    active
+    status
 ) {
 
-    if (active) {
+    if (status) {
 
         loading.classList.add(
             "active"
@@ -936,44 +772,31 @@ function clearError() {
 
 
 // ======================================================
-// SAVE SESSION
+// SAVE LOGIN
 // ======================================================
 
 function saveSession(
     user
 ) {
 
-    try {
-
-        localStorage.setItem(
-            STORAGE_LOGIN,
-            "true"
-        );
+    localStorage.setItem(
+        STORAGE_LOGIN,
+        "true"
+    );
 
 
-        localStorage.setItem(
-            STORAGE_USER,
-            JSON.stringify(
-                user
-            )
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Session save error:",
-            error
-        );
-
-    }
+    localStorage.setItem(
+        STORAGE_USER,
+        JSON.stringify(
+            user
+        )
+    );
 
 }
 
 
 // ======================================================
-// GET SESSION
+// GET LOGIN SESSION
 // ======================================================
 
 function getSession() {
@@ -1038,38 +861,22 @@ function clearSession() {
 
 
 // ======================================================
-// CLEAN USERNAME
+// GITHUB IMAGE URL
 // ======================================================
 
-function cleanUsername(
+function getProfileImageUrl(
     username
 ) {
 
-    return String(
-        username || ""
-    )
-    .trim()
-    .toLowerCase();
-
-}
-
-
-// ======================================================
-// CREATE GITHUB RAW IMAGE URL
-// ======================================================
-
-function createGitHubImageUrl(
-    username,
-    extension
-) {
-
-    const cleanName =
-        cleanUsername(
-            username
-        );
+    const cleanUsername =
+        String(
+            username || ""
+        )
+        .trim()
+        .toLowerCase();
 
 
-    if (!cleanName) {
+    if (!cleanUsername) {
 
         return "";
 
@@ -1080,21 +887,15 @@ function createGitHubImageUrl(
 
         "https://raw.githubusercontent.com/" +
 
-        encodeURIComponent(
-            GITHUB_USERNAME
-        ) +
+        GITHUB_USERNAME +
 
         "/" +
 
-        encodeURIComponent(
-            GITHUB_REPO
-        ) +
+        GITHUB_REPO +
 
         "/" +
 
-        encodeURIComponent(
-            GITHUB_BRANCH
-        ) +
+        GITHUB_BRANCH +
 
         "/" +
 
@@ -1103,180 +904,12 @@ function createGitHubImageUrl(
         "/" +
 
         encodeURIComponent(
-            cleanName
+            cleanUsername
         ) +
 
-        extension
+        ".jpg"
 
     );
-
-}
-
-
-// ======================================================
-// IMAGE URL LIST
-// ======================================================
-
-function getProfileImageUrls(
-    username
-) {
-
-    const urls = [];
-
-
-    for (
-        let i = 0;
-        i < IMAGE_EXTENSIONS.length;
-        i++
-    ) {
-
-        urls.push(
-
-            createGitHubImageUrl(
-                username,
-                IMAGE_EXTENSIONS[i]
-            )
-
-        );
-
-    }
-
-
-    return urls;
-
-}
-
-
-// ======================================================
-// LOAD PROFILE IMAGE
-// ======================================================
-//
-// Try:
-//
-// username.jpg
-// username.jpeg
-// username.png
-// username.webp
-//
-// If one works, stop.
-// ======================================================
-
-function loadProfileImage(
-    username
-) {
-
-    const urls =
-        getProfileImageUrls(
-            username
-        );
-
-
-    if (
-        urls.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    profileImage.classList.add(
-        "loading-image"
-    );
-
-
-    profileImage.classList.remove(
-        "image-error"
-    );
-
-
-    let currentIndex =
-        0;
-
-
-    function tryNextImage() {
-
-        if (
-            currentIndex >=
-            urls.length
-        ) {
-
-            profileImage.classList.remove(
-                "loading-image"
-            );
-
-
-            profileImage.classList.add(
-                "image-error"
-            );
-
-
-            if (DEFAULT_IMAGE) {
-
-                profileImage.src =
-                    DEFAULT_IMAGE;
-
-            }
-
-
-            console.error(
-                "No profile image found for:",
-                username
-            );
-
-
-            return;
-
-        }
-
-
-        const imageUrl =
-            urls[
-                currentIndex
-            ];
-
-
-        currentIndex++;
-
-
-        const testImage =
-            new Image();
-
-
-        testImage.onload =
-            function() {
-
-                profileImage.classList.remove(
-                    "loading-image"
-                );
-
-
-                profileImage.classList.remove(
-                    "image-error"
-                );
-
-
-                profileImage.src =
-                    imageUrl;
-
-            };
-
-
-        testImage.onerror =
-            function() {
-
-                tryNextImage();
-
-            };
-
-
-        testImage.src =
-            imageUrl;
-
-    }
-
-
-    tryNextImage();
 
 }
 
@@ -1290,45 +923,46 @@ function showProfile(
 ) {
 
     if (!user) {
-
         return;
-
     }
 
 
-    // ==============================================
-    // USERNAME
-    // ==============================================
-
     const username =
-        user.username
-            ? String(
-                user.username
-              ).trim()
-            : "";
+        String(
+            user.username || ""
+        ).trim();
+
+
+    const name =
+        String(
+            user.name || username || "User"
+        ).trim();
 
 
     // ==============================================
-    // NAME
+    // SHOW NAME
     // ==============================================
 
     profileName.textContent =
-        user.name ||
-        username ||
-        "User";
+        name;
 
 
     // ==============================================
-    // LOAD GITHUB IMAGE
+    // GITHUB PROFILE IMAGE
     // ==============================================
 
-    loadProfileImage(
-        username
-    );
+    const imageUrl =
+        getProfileImageUrl(
+            username
+        );
+
+
+    profileImage.src =
+        imageUrl;
 
 
     // ==============================================
-    // HIDE LOGIN
+    // SHOW MAIN
     // ==============================================
 
     loginScreen.classList.remove(
@@ -1336,15 +970,28 @@ function showProfile(
     );
 
 
-    // ==============================================
-    // SHOW MAIN
-    // ==============================================
-
     mainScreen.classList.add(
         "active"
     );
 
 }
+
+
+// ======================================================
+// PROFILE IMAGE ERROR
+// ======================================================
+
+profileImage.addEventListener(
+    "error",
+    function() {
+
+        console.error(
+            "Profile image not found:",
+            this.src
+        );
+
+    }
+);
 
 
 // ======================================================
@@ -1365,7 +1012,7 @@ async function login() {
 
 
     // ==============================================
-    // USERNAME VALIDATION
+    // USERNAME
     // ==============================================
 
     if (!username) {
@@ -1382,7 +1029,7 @@ async function login() {
 
 
     // ==============================================
-    // PASSWORD VALIDATION
+    // PASSWORD
     // ==============================================
 
     if (!password) {
@@ -1398,10 +1045,6 @@ async function login() {
     }
 
 
-    // ==============================================
-    // START LOADING
-    // ==============================================
-
     setLoading(
         true
     );
@@ -1410,7 +1053,7 @@ async function login() {
     try {
 
         // ==========================================
-        // API REQUEST
+        // SEND LOGIN REQUEST
         // ==========================================
 
         const response =
@@ -1450,9 +1093,7 @@ async function login() {
         // CHECK RESPONSE
         // ==========================================
 
-        if (
-            !response.ok
-        ) {
+        if (!response.ok) {
 
             throw new Error(
                 "HTTP " +
@@ -1463,7 +1104,7 @@ async function login() {
 
 
         // ==========================================
-        // GET JSON
+        // READ JSON
         // ==========================================
 
         const result =
@@ -1471,13 +1112,13 @@ async function login() {
 
 
         console.log(
-            "Login Response:",
+            "Login response:",
             result
         );
 
 
         // ==========================================
-        // LOGIN SUCCESS
+        // SUCCESS
         // ==========================================
 
         if (
@@ -1489,7 +1130,9 @@ async function login() {
                 result.user || {};
 
 
-            // Ensure username exists
+            // ======================================
+            // MAKE SURE USERNAME EXISTS
+            // ======================================
 
             if (
                 !user.username
@@ -1501,14 +1144,18 @@ async function login() {
             }
 
 
-            // Save session
+            // ======================================
+            // SAVE SESSION
+            // ======================================
 
             saveSession(
                 user
             );
 
 
-            // Show profile
+            // ======================================
+            // SHOW PROFILE
+            // ======================================
 
             showProfile(
                 user
@@ -1518,7 +1165,7 @@ async function login() {
 
 
         // ==========================================
-        // LOGIN FAILED
+        // FAILED
         // ==========================================
 
         else {
@@ -1541,7 +1188,7 @@ async function login() {
     catch (error) {
 
         console.error(
-            "Login Error:",
+            "Login error:",
             error
         );
 
@@ -1574,7 +1221,7 @@ loginButton.addEventListener(
 
 
 // ======================================================
-// USERNAME ENTER
+// ENTER KEY
 // ======================================================
 
 usernameInput.addEventListener(
@@ -1593,10 +1240,6 @@ usernameInput.addEventListener(
 );
 
 
-// ======================================================
-// PASSWORD ENTER
-// ======================================================
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -1614,7 +1257,7 @@ passwordInput.addEventListener(
 
 
 // ======================================================
-// INITIALIZE APP
+// START APP
 // ======================================================
 
 function initializeApp() {
@@ -1624,7 +1267,7 @@ function initializeApp() {
 
 
     // ==============================================
-    // EXISTING SESSION
+    // ALREADY LOGGED IN
     // ==============================================
 
     if (savedUser) {
@@ -1639,7 +1282,7 @@ function initializeApp() {
 
 
     // ==============================================
-    // NEW USER
+    // NEW LOGIN
     // ==============================================
 
     loginScreen.classList.add(
@@ -1658,7 +1301,7 @@ function initializeApp() {
 
 
 // ======================================================
-// START APP
+// INITIALIZE
 // ======================================================
 
 initializeApp();
