@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,11 +10,29 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
-    <meta name="theme-color" content="#0b0f14">
+    <meta
+        name="theme-color"
+        content="#0b0f14"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
 
     <title>My App</title>
 
+
     <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
 
         * {
             margin: 0;
@@ -22,13 +41,16 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+
         html,
         body {
             width: 100%;
             height: 100%;
         }
 
+
         body {
+
             font-family:
                 Arial,
                 Helvetica,
@@ -39,15 +61,19 @@
             color: #ffffff;
 
             overflow: hidden;
+
+            -webkit-font-smoothing: antialiased;
         }
 
 
-        /* =====================================
+        /* =========================================
            APP
-        ===================================== */
+        ========================================= */
 
         .app {
+
             width: 100%;
+
             height: 100vh;
 
             min-height: 100vh;
@@ -57,6 +83,7 @@
             overflow: hidden;
 
             background:
+
                 radial-gradient(
                     circle at 50% 45%,
                     #26313c 0%,
@@ -66,77 +93,117 @@
         }
 
 
-        /* =====================================
+        /* =========================================
            SCREEN
-        ===================================== */
+        ========================================= */
 
         .screen {
+
             width: 100%;
+
             height: 100%;
 
             display: none;
 
             align-items: center;
+
             justify-content: center;
 
             padding: 25px;
         }
 
+
         .screen.active {
+
             display: flex;
         }
 
 
-        /* =====================================
+        /* =========================================
            LOGIN
-        ===================================== */
+        ========================================= */
 
         .login-box {
+
             width: 100%;
+
             max-width: 380px;
 
             text-align: center;
         }
 
+
         .app-title {
+
             font-size: 32px;
 
             font-weight: 700;
+
+            color: #ffffff;
 
             margin-bottom: 10px;
 
             letter-spacing: 0.5px;
         }
 
+
         .app-subtitle {
+
             font-size: 14px;
 
-            color: rgba(255,255,255,0.6);
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.60
+                );
 
             margin-bottom: 35px;
         }
 
 
+        /* =========================================
+           INPUT
+        ========================================= */
+
         .input-box {
+
             width: 100%;
 
             margin-bottom: 15px;
         }
 
+
         .input-box input {
+
             width: 100%;
 
             height: 54px;
 
             padding: 0 17px;
 
-            border: 1px solid rgba(255,255,255,0.10);
+            border:
+
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.10
+                );
 
             border-radius: 14px;
 
             outline: none;
 
-            background: rgba(255,255,255,0.07);
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.07
+                );
 
             color: #ffffff;
 
@@ -145,18 +212,45 @@
             transition: 0.2s;
         }
 
+
         .input-box input::placeholder {
-            color: rgba(255,255,255,0.45);
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.45
+                );
         }
+
 
         .input-box input:focus {
-            border-color: rgba(255,255,255,0.35);
 
-            background: rgba(255,255,255,0.10);
+            border-color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.35
+                );
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.10
+                );
         }
 
 
+        /* =========================================
+           LOGIN BUTTON
+        ========================================= */
+
         .login-button {
+
             width: 100%;
 
             height: 54px;
@@ -180,33 +274,47 @@
             transition: 0.2s;
         }
 
+
         .login-button:active {
+
             transform: scale(0.98);
         }
 
+
         .login-button:disabled {
-            opacity: 0.6;
+
+            opacity: 0.55;
 
             cursor: not-allowed;
         }
 
 
+        /* =========================================
+           ERROR
+        ========================================= */
+
         .error-message {
+
             min-height: 22px;
 
             margin-top: 15px;
 
             font-size: 13px;
 
-            color: #ff7d7d;
+            color: #ff7777;
+
+            line-height: 1.4;
         }
 
 
-        /* =====================================
+        /* =========================================
            MAIN PAGE
-        ===================================== */
+        ========================================= */
 
         .main-content {
+
+            width: 100%;
+
             display: flex;
 
             flex-direction: column;
@@ -216,12 +324,15 @@
             justify-content: center;
 
             text-align: center;
-
-            width: 100%;
         }
 
 
+        /* =========================================
+           PROFILE IMAGE
+        ========================================= */
+
         .profile-image {
+
             width: 150px;
 
             height: 150px;
@@ -230,17 +341,46 @@
 
             object-fit: cover;
 
-            border: 4px solid rgba(255,255,255,0.9);
+            display: block;
 
-            box-shadow:
-                0 0 0 8px rgba(255,255,255,0.06),
-                0 20px 55px rgba(0,0,0,0.55);
+            border:
+
+                4px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
 
             background: #202832;
+
+            box-shadow:
+
+                0 0 0 8px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.06
+                ),
+
+                0 20px 55px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                );
         }
 
 
+        /* =========================================
+           PROFILE NAME
+        ========================================= */
+
         .profile-name {
+
             margin-top: 22px;
 
             font-size: 25px;
@@ -250,82 +390,159 @@
             color: #ffffff;
 
             letter-spacing: 0.5px;
+
+            text-shadow:
+
+                0 4px 15px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.40
+                );
         }
 
 
-        /* =====================================
+        /* =========================================
            LOADING
-        ===================================== */
+        ========================================= */
 
         .loading {
-            display: none;
 
             position: fixed;
 
             inset: 0;
 
-            z-index: 1000;
+            z-index: 9999;
+
+            display: none;
 
             align-items: center;
 
             justify-content: center;
 
-            background: rgba(0,0,0,0.55);
+            background:
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                );
 
             backdrop-filter: blur(5px);
+
+            -webkit-backdrop-filter: blur(5px);
         }
 
+
         .loading.active {
+
             display: flex;
         }
 
+
         .loader {
+
             width: 42px;
 
             height: 42px;
 
-            border: 4px solid rgba(255,255,255,0.20);
+            border:
+
+                4px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.20
+                );
 
             border-top-color: #ffffff;
 
             border-radius: 50%;
 
-            animation: spin 0.8s linear infinite;
+            animation:
+                spin 0.8s linear infinite;
         }
+
 
         @keyframes spin {
 
             to {
-                transform: rotate(360deg);
-            }
 
+                transform:
+                    rotate(360deg);
+            }
         }
 
 
-        /* =====================================
+        /* =========================================
+           IMAGE ERROR
+        ========================================= */
+
+        .profile-image.image-error {
+
+            object-fit: contain;
+
+            padding: 30px;
+
+            opacity: 0.55;
+        }
+
+
+        /* =========================================
            MOBILE
-        ===================================== */
+        ========================================= */
 
         @media (max-width: 480px) {
 
             .screen {
+
                 padding: 20px;
             }
 
+
             .app-title {
+
                 font-size: 29px;
             }
 
+
             .profile-image {
+
                 width: 135px;
 
                 height: 135px;
             }
 
+
             .profile-name {
+
                 font-size: 23px;
             }
+        }
 
+
+        /* =========================================
+           SMALL HEIGHT DEVICES
+        ========================================= */
+
+        @media (max-height: 600px) {
+
+            .profile-image {
+
+                width: 115px;
+
+                height: 115px;
+            }
+
+
+            .profile-name {
+
+                margin-top: 16px;
+
+                font-size: 21px;
+            }
         }
 
     </style>
@@ -335,12 +552,13 @@
 
 <body>
 
+
 <div class="app">
 
 
-    <!-- =====================================
+    <!-- =========================================
          LOGIN SCREEN
-    ====================================== -->
+    ========================================== -->
 
     <section
         id="loginScreen"
@@ -349,14 +567,18 @@
 
         <div class="login-box">
 
+
             <h1 class="app-title">
                 My App
             </h1>
+
 
             <p class="app-subtitle">
                 Login to continue
             </p>
 
+
+            <!-- USERNAME -->
 
             <div class="input-box">
 
@@ -365,10 +587,14 @@
                     id="username"
                     placeholder="Username"
                     autocomplete="username"
+                    autocapitalize="none"
+                    spellcheck="false"
                 >
 
             </div>
 
+
+            <!-- PASSWORD -->
 
             <div class="input-box">
 
@@ -382,19 +608,25 @@
             </div>
 
 
+            <!-- LOGIN -->
+
             <button
                 type="button"
-                class="login-button"
                 id="loginButton"
+                class="login-button"
             >
                 LOGIN
             </button>
 
 
+            <!-- ERROR -->
+
             <div
                 id="errorMessage"
                 class="error-message"
+                aria-live="polite"
             ></div>
+
 
         </div>
 
@@ -402,9 +634,9 @@
 
 
 
-    <!-- =====================================
+    <!-- =========================================
          MAIN SCREEN
-    ====================================== -->
+    ========================================== -->
 
     <section
         id="mainScreen"
@@ -413,12 +645,18 @@
 
         <div class="main-content">
 
+
+            <!-- PROFILE IMAGE -->
+
             <img
                 id="profileImage"
                 class="profile-image"
-                src="profile.jpg"
-                alt="Profile"
+                src=""
+                alt="Profile Picture"
             >
+
+
+            <!-- NAME -->
 
             <div
                 id="profileName"
@@ -427,19 +665,21 @@
                 Your Name
             </div>
 
+
         </div>
 
     </section>
 
 
 
-    <!-- =====================================
+    <!-- =========================================
          LOADING
-    ====================================== -->
+    ========================================== -->
 
     <div
         id="loading"
         class="loading"
+        aria-hidden="true"
     >
 
         <div class="loader"></div>
@@ -456,92 +696,106 @@
 "use strict";
 
 
-// ========================================
+// ======================================================
 // GOOGLE APPS SCRIPT API
-// ========================================
+// ======================================================
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxqIrcVzanyJkNzwHrH_xMfUxNfqEXKJddBpfirJJclqul_WYfvIBfNcLBkH4OkmP2h/exec";
 
 
-// ========================================
+// ======================================================
+// LOCAL STORAGE KEYS
+// ======================================================
+
+const STORAGE_KEYS = {
+
+    LOGGED_IN:
+        "myApp_loggedIn",
+
+    USER:
+        "myApp_user"
+
+};
+
+
+// ======================================================
 // ELEMENTS
-// ========================================
+// ======================================================
 
 const loginScreen =
-    document.getElementById("loginScreen");
+    document.getElementById(
+        "loginScreen"
+    );
+
 
 const mainScreen =
-    document.getElementById("mainScreen");
+    document.getElementById(
+        "mainScreen"
+    );
+
 
 const usernameInput =
-    document.getElementById("username");
+    document.getElementById(
+        "username"
+    );
+
 
 const passwordInput =
-    document.getElementById("password");
+    document.getElementById(
+        "password"
+    );
+
 
 const loginButton =
-    document.getElementById("loginButton");
+    document.getElementById(
+        "loginButton"
+    );
+
 
 const errorMessage =
-    document.getElementById("errorMessage");
+    document.getElementById(
+        "errorMessage"
+    );
+
 
 const loading =
-    document.getElementById("loading");
+    document.getElementById(
+        "loading"
+    );
+
+
+const profileImage =
+    document.getElementById(
+        "profileImage"
+    );
+
 
 const profileName =
-    document.getElementById("profileName");
+    document.getElementById(
+        "profileName"
+    );
 
 
-// ========================================
-// SHOW MAIN
-// ========================================
+// ======================================================
+// SHOW LOADING
+// ======================================================
 
-function showMain(user) {
+function setLoading(isLoading) {
 
-    loginScreen.classList.remove("active");
+    if (isLoading) {
 
-    mainScreen.classList.add("active");
-
-
-    if (user && user.name) {
-
-        profileName.textContent =
-            user.name;
-
-    }
-
-}
-
-
-// ========================================
-// SHOW LOGIN
-// ========================================
-
-function showLogin() {
-
-    mainScreen.classList.remove("active");
-
-    loginScreen.classList.add("active");
-
-}
-
-
-// ========================================
-// LOADING
-// ========================================
-
-function setLoading(status) {
-
-    if (status) {
-
-        loading.classList.add("active");
+        loading.classList.add(
+            "active"
+        );
 
         loginButton.disabled = true;
 
     } else {
 
-        loading.classList.remove("active");
+        loading.classList.remove(
+            "active"
+        );
 
         loginButton.disabled = false;
 
@@ -550,9 +804,9 @@ function setLoading(status) {
 }
 
 
-// ========================================
-// ERROR
-// ========================================
+// ======================================================
+// SHOW ERROR
+// ======================================================
 
 function showError(message) {
 
@@ -562,77 +816,277 @@ function showError(message) {
 }
 
 
-// ========================================
-// SAVE SESSION
-// ========================================
+// ======================================================
+// CLEAR ERROR
+// ======================================================
+
+function clearError() {
+
+    errorMessage.textContent = "";
+
+}
+
+
+// ======================================================
+// SAVE USER SESSION
+// ======================================================
 
 function saveSession(user) {
 
     localStorage.setItem(
-        "appLoggedIn",
+        STORAGE_KEYS.LOGGED_IN,
         "true"
     );
 
+
     localStorage.setItem(
-        "appUser",
+        STORAGE_KEYS.USER,
         JSON.stringify(user)
     );
 
 }
 
 
-// ========================================
-// GET SESSION
-// ========================================
+// ======================================================
+// GET SAVED SESSION
+// ======================================================
 
-function getSession() {
+function getSavedSession() {
 
     const loggedIn =
-        localStorage.getItem("appLoggedIn");
+        localStorage.getItem(
+            STORAGE_KEYS.LOGGED_IN
+        );
 
-    const user =
-        localStorage.getItem("appUser");
+
+    const savedUser =
+        localStorage.getItem(
+            STORAGE_KEYS.USER
+        );
 
 
     if (
-        loggedIn === "true" &&
-        user
+        loggedIn !== "true" ||
+        !savedUser
     ) {
 
-        try {
-
-            return JSON.parse(user);
-
-        } catch (error) {
-
-            localStorage.removeItem("appLoggedIn");
-
-            localStorage.removeItem("appUser");
-
-        }
+        return null;
 
     }
 
-    return null;
+
+    try {
+
+        return JSON.parse(
+            savedUser
+        );
+
+    }
+
+    catch (error) {
+
+        clearSession();
+
+        return null;
+
+    }
 
 }
 
 
-// ========================================
+// ======================================================
+// CLEAR SESSION
+// ======================================================
+
+function clearSession() {
+
+    localStorage.removeItem(
+        STORAGE_KEYS.LOGGED_IN
+    );
+
+
+    localStorage.removeItem(
+        STORAGE_KEYS.USER
+    );
+
+}
+
+
+// ======================================================
+// CREATE DRIVE IMAGE URL
+// ======================================================
+
+function createDriveImageUrl(
+    fileId
+) {
+
+    if (!fileId) {
+
+        return "";
+
+    }
+
+
+    return (
+        "https://drive.google.com/thumbnail?id=" +
+        encodeURIComponent(
+            fileId
+        ) +
+        "&sz=w600"
+    );
+
+}
+
+
+// ======================================================
+// SET PROFILE DATA
+// ======================================================
+
+function setProfileData(user) {
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    // ==============================================
+    // NAME
+    // ==============================================
+
+    profileName.textContent =
+        user.name || "User";
+
+
+    // ==============================================
+    // PHOTO
+    // ==============================================
+
+    let photoUrl =
+        user.photo || "";
+
+
+    // If photo URL is missing,
+    // create it from File ID.
+
+    if (
+        !photoUrl &&
+        user.photoFileId
+    ) {
+
+        photoUrl =
+            createDriveImageUrl(
+                user.photoFileId
+            );
+
+    }
+
+
+    // ==============================================
+    // SET IMAGE
+    // ==============================================
+
+    if (photoUrl) {
+
+        profileImage.classList.remove(
+            "image-error"
+        );
+
+
+        profileImage.src =
+            photoUrl;
+
+    }
+
+    else {
+
+        profileImage.removeAttribute(
+            "src"
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// SHOW MAIN PAGE
+// ======================================================
+
+function showMainPage(user) {
+
+    setProfileData(
+        user
+    );
+
+
+    loginScreen.classList.remove(
+        "active"
+    );
+
+
+    mainScreen.classList.add(
+        "active"
+    );
+
+}
+
+
+// ======================================================
+// SHOW LOGIN PAGE
+// ======================================================
+
+function showLoginPage() {
+
+    mainScreen.classList.remove(
+        "active"
+    );
+
+
+    loginScreen.classList.add(
+        "active"
+    );
+
+}
+
+
+// ======================================================
+// PROFILE IMAGE ERROR
+// ======================================================
+
+profileImage.addEventListener(
+    "error",
+    function() {
+
+        this.classList.add(
+            "image-error"
+        );
+
+    }
+);
+
+
+// ======================================================
 // LOGIN
-// ========================================
+// ======================================================
 
 async function login() {
 
     const username =
         usernameInput.value.trim();
 
+
     const password =
         passwordInput.value;
 
 
-    errorMessage.textContent = "";
+    clearError();
 
+
+    // ==============================================
+    // VALIDATION
+    // ==============================================
 
     if (!username) {
 
@@ -660,85 +1114,138 @@ async function login() {
     }
 
 
-    setLoading(true);
+    // ==============================================
+    // LOADING
+    // ==============================================
+
+    setLoading(
+        true
+    );
 
 
     try {
+
+        // ==========================================
+        // API REQUEST
+        // ==========================================
 
         const response =
             await fetch(
                 API_URL,
                 {
-                    method: "POST",
+
+                    method:
+                        "POST",
 
                     headers: {
+
                         "Content-Type":
                             "text/plain;charset=utf-8"
+
                     },
 
-                    body: JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        action: "login",
+                            action:
+                                "login",
 
-                        username: username,
+                            username:
+                                username,
 
-                        password: password
+                            password:
+                                password
 
-                    })
+                        })
+
                 }
             );
 
 
+        // ==========================================
+        // RESPONSE
+        // ==========================================
+
         const result =
             await response.json();
 
+
+        // ==========================================
+        // SUCCESS
+        // ==========================================
 
         if (
             result &&
             result.success === true
         ) {
 
+            const user =
+                result.user || {};
+
+
+            // Save session
+
             saveSession(
-                result.user
+                user
             );
 
-            showMain(
-                result.user
+
+            // Show Main
+
+            showMainPage(
+                user
             );
 
-        } else {
+
+        }
+
+        else {
 
             showError(
-                result.message ||
-                "Invalid username or password."
+
+                result &&
+                result.message
+
+                    ? result.message
+
+                    : "Invalid username or password."
+
             );
 
         }
 
+    }
 
-    } catch (error) {
+
+    catch (error) {
 
         console.error(
             "Login Error:",
             error
         );
 
+
         showError(
             "Unable to connect to server."
         );
 
-    } finally {
+    }
 
-        setLoading(false);
+
+    finally {
+
+        setLoading(
+            false
+        );
 
     }
 
 }
 
 
-// ========================================
+// ======================================================
 // LOGIN BUTTON
-// ========================================
+// ======================================================
 
 loginButton.addEventListener(
     "click",
@@ -746,15 +1253,17 @@ loginButton.addEventListener(
 );
 
 
-// ========================================
-// ENTER KEY
-// ========================================
+// ======================================================
+// ENTER KEY - USERNAME
+// ======================================================
 
 usernameInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             passwordInput.focus();
 
@@ -764,11 +1273,17 @@ usernameInput.addEventListener(
 );
 
 
+// ======================================================
+// ENTER KEY - PASSWORD
+// ======================================================
+
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             login();
 
@@ -778,34 +1293,58 @@ passwordInput.addEventListener(
 );
 
 
-// ========================================
-// CHECK SAVED LOGIN
-// ========================================
+// ======================================================
+// INITIAL APP CHECK
+// ======================================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+function initializeApp() {
 
-        const session =
-            getSession();
+    const savedUser =
+        getSavedSession();
 
 
-        if (session) {
+    if (savedUser) {
 
-            showMain(
-                session
-            );
-
-        } else {
-
-            showLogin();
-
-        }
+        showMainPage(
+            savedUser
+        );
 
     }
-);
+
+    else {
+
+        showLoginPage();
+
+    }
+
+}
+
+
+// ======================================================
+// START APP
+// ======================================================
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeApp
+    );
+
+}
+
+else {
+
+    initializeApp();
+
+}
 
 </script>
 
+
 </body>
+
 </html>
