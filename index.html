@@ -15,6 +15,16 @@
         content="#0b0f14"
     >
 
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
     <title>My App</title>
 
 
@@ -30,8 +40,10 @@
 
         html,
         body {
+
             width: 100%;
             height: 100%;
+
         }
 
 
@@ -48,6 +60,8 @@
 
             overflow: hidden;
 
+            -webkit-font-smoothing: antialiased;
+
         }
 
 
@@ -58,21 +72,17 @@
         .app {
 
             width: 100%;
-
             height: 100vh;
 
-            min-height: 100vh;
+            overflow: hidden;
 
             background:
-
                 radial-gradient(
-                    circle at center,
+                    circle at 50% 45%,
                     #26313c 0%,
-                    #151c24 40%,
-                    #0b0f14 80%
+                    #151c24 38%,
+                    #0b0f14 78%
                 );
-
-            overflow: hidden;
 
         }
 
@@ -84,13 +94,11 @@
         .screen {
 
             width: 100%;
-
             height: 100%;
 
             display: none;
 
             align-items: center;
-
             justify-content: center;
 
             padding: 20px;
@@ -112,7 +120,6 @@
         .login-box {
 
             width: 100%;
-
             max-width: 380px;
 
             text-align: center;
@@ -126,9 +133,11 @@
 
             font-weight: 700;
 
-            color: #ffffff;
+            line-height: 1.2;
 
             margin-bottom: 10px;
+
+            color: #ffffff;
 
         }
 
@@ -197,6 +206,9 @@
 
             font-size: 15px;
 
+            transition:
+                0.2s;
+
         }
 
 
@@ -260,7 +272,9 @@
 
             cursor: pointer;
 
-            transition: 0.2s;
+            transition:
+                transform 0.15s,
+                opacity 0.15s;
 
         }
 
@@ -376,6 +390,8 @@
 
             font-weight: 600;
 
+            line-height: 1.3;
+
             color: #ffffff;
 
             letter-spacing: 0.3px;
@@ -432,7 +448,6 @@
         .loader {
 
             width: 42px;
-
             height: 42px;
 
             border:
@@ -483,7 +498,6 @@
             .profile-image {
 
                 width: 135px;
-
                 height: 135px;
 
             }
@@ -560,7 +574,7 @@
             </div>
 
 
-            <!-- LOGIN -->
+            <!-- LOGIN BUTTON -->
 
             <button
                 type="button"
@@ -600,21 +614,30 @@
         <div class="main-content">
 
 
-            <!-- =================================
-                 FIXED GITHUB PROFILE PICTURE
-            ================================== -->
+            <!--
+                FIXED GITHUB PROFILE PICTURE
+
+                GitHub:
+                CDT248
+
+                Repository:
+                app
+
+                File:
+                profile.jpg
+            -->
 
             <img
                 id="profileImage"
                 class="profile-image"
-                src="https://raw.githubusercontent.com/CDT248/app/main/profile/fahim.jpg.png"
+                src="https://raw.githubusercontent.com/CDT248/app/main/profile.jpg"
                 alt="Profile Picture"
             >
 
 
-            <!-- =================================
-                 NAME FROM GOOGLE SHEET
-            ================================== -->
+            <!--
+                NAME WILL COME FROM GOOGLE SHEET
+            -->
 
             <div
                 id="profileName"
@@ -654,7 +677,7 @@
 
 
 // ======================================================
-// GOOGLE APPS SCRIPT API
+// GOOGLE APPS SCRIPT URL
 // ======================================================
 
 const API_URL =
@@ -664,24 +687,9 @@ const API_URL =
 // ======================================================
 // FIXED GITHUB PROFILE PICTURE
 // ======================================================
-//
-// এই ছবিটি সবাই দেখতে পাবে।
-//
-// GitHub:
-// CDT248
-//
-// Repository:
-// app
-//
-// Folder:
-// profile
-//
-// File:
-// fahim.jpg.png
-// ======================================================
 
 const PROFILE_IMAGE_URL =
-"https://raw.githubusercontent.com/CDT248/app/main/profile/fahim.jpg.png";
+"https://raw.githubusercontent.com/CDT248/app/main/profile.jpg";
 
 
 // ======================================================
@@ -697,7 +705,7 @@ const STORAGE_USER =
 
 
 // ======================================================
-// ELEMENTS
+// GET ELEMENTS
 // ======================================================
 
 const loginScreen =
@@ -810,7 +818,7 @@ function clearError() {
 
 
 // ======================================================
-// SAVE SESSION
+// SAVE LOGIN SESSION
 // ======================================================
 
 function saveSession(
@@ -837,7 +845,7 @@ function saveSession(
     catch (error) {
 
         console.error(
-            "Save session error:",
+            "Session save error:",
             error
         );
 
@@ -847,7 +855,7 @@ function saveSession(
 
 
 // ======================================================
-// GET SESSION
+// GET SAVED LOGIN
 // ======================================================
 
 function getSession() {
@@ -915,7 +923,7 @@ function clearSession() {
 // SHOW MAIN PAGE
 // ======================================================
 
-function showProfile(
+function showMain(
     user
 ) {
 
@@ -930,12 +938,19 @@ function showProfile(
     // NAME FROM GOOGLE SHEET
     // ==============================================
 
-    const name =
-        String(
-            user.name ||
-            user.username ||
-            "User"
-        ).trim();
+    const name = String(
+
+        user.name ||
+
+        user.Name ||
+
+        user.username ||
+
+        user.Username ||
+
+        "User"
+
+    ).trim();
 
 
     profileName.textContent =
@@ -943,7 +958,7 @@ function showProfile(
 
 
     // ==============================================
-    // GITHUB IMAGE
+    // GITHUB PROFILE IMAGE
     // ==============================================
 
     profileImage.src =
@@ -951,17 +966,13 @@ function showProfile(
 
 
     // ==============================================
-    // HIDE LOGIN
+    // CHANGE SCREEN
     // ==============================================
 
     loginScreen.classList.remove(
         "active"
     );
 
-
-    // ==============================================
-    // SHOW MAIN
-    // ==============================================
 
     mainScreen.classList.add(
         "active"
@@ -988,7 +999,7 @@ async function login() {
 
 
     // ==============================================
-    // USERNAME CHECK
+    // USERNAME VALIDATION
     // ==============================================
 
     if (!username) {
@@ -1005,7 +1016,7 @@ async function login() {
 
 
     // ==============================================
-    // PASSWORD CHECK
+    // PASSWORD VALIDATION
     // ==============================================
 
     if (!password) {
@@ -1032,8 +1043,9 @@ async function login() {
 
     try {
 
+
         // ==========================================
-        // SEND REQUEST TO GOOGLE APPS SCRIPT
+        // SEND LOGIN REQUEST
         // ==========================================
 
         const response =
@@ -1070,7 +1082,7 @@ async function login() {
 
 
         // ==========================================
-        // HTTP ERROR
+        // HTTP CHECK
         // ==========================================
 
         if (!response.ok) {
@@ -1084,7 +1096,7 @@ async function login() {
 
 
         // ==========================================
-        // READ JSON
+        // GET JSON
         // ==========================================
 
         const result =
@@ -1092,7 +1104,7 @@ async function login() {
 
 
         console.log(
-            "Login response:",
+            "Server response:",
             result
         );
 
@@ -1106,12 +1118,13 @@ async function login() {
             result.success === true
         ) {
 
+
             const user =
                 result.user || {};
 
 
             // ======================================
-            // USERNAME
+            // KEEP USERNAME
             // ======================================
 
             if (
@@ -1125,7 +1138,7 @@ async function login() {
 
 
             // ======================================
-            // SAVE SESSION
+            // SAVE LOGIN
             // ======================================
 
             saveSession(
@@ -1134,10 +1147,10 @@ async function login() {
 
 
             // ======================================
-            // SHOW MAIN PAGE
+            // OPEN MAIN PAGE
             // ======================================
 
-            showProfile(
+            showMain(
                 user
             );
 
@@ -1201,7 +1214,7 @@ loginButton.addEventListener(
 
 
 // ======================================================
-// USERNAME ENTER
+// ENTER KEY - USERNAME
 // ======================================================
 
 usernameInput.addEventListener(
@@ -1221,7 +1234,7 @@ usernameInput.addEventListener(
 
 
 // ======================================================
-// PASSWORD ENTER
+// ENTER KEY - PASSWORD
 // ======================================================
 
 passwordInput.addEventListener(
@@ -1249,7 +1262,7 @@ profileImage.addEventListener(
     function() {
 
         console.error(
-            "GitHub profile image could not be loaded:",
+            "Profile picture could not be loaded:",
             PROFILE_IMAGE_URL
         );
 
@@ -1273,7 +1286,7 @@ function initializeApp() {
 
     if (savedUser) {
 
-        showProfile(
+        showMain(
             savedUser
         );
 
@@ -1283,7 +1296,7 @@ function initializeApp() {
 
 
     // ==============================================
-    // NEW LOGIN
+    // SHOW LOGIN
     // ==============================================
 
     loginScreen.classList.add(
