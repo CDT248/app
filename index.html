@@ -40,10 +40,8 @@
 
         html,
         body {
-
             width: 100%;
             height: 100%;
-
         }
 
 
@@ -188,7 +186,6 @@
             padding: 0 17px;
 
             border:
-
                 1px solid
                 rgba(
                     255,
@@ -202,7 +199,6 @@
             outline: none;
 
             background:
-
                 rgba(
                     255,
                     255,
@@ -222,7 +218,6 @@
         .input-box input::placeholder {
 
             color:
-
                 rgba(
                     255,
                     255,
@@ -236,7 +231,6 @@
         .input-box input:focus {
 
             border-color:
-
                 rgba(
                     255,
                     255,
@@ -245,7 +239,6 @@
                 );
 
             background:
-
                 rgba(
                     255,
                     255,
@@ -362,7 +355,6 @@
             background: #202832;
 
             border:
-
                 4px solid
                 rgba(
                     255,
@@ -409,7 +401,6 @@
             letter-spacing: 0.5px;
 
             text-shadow:
-
                 0 4px 15px
                 rgba(
                     0,
@@ -422,7 +413,29 @@
 
 
         /* =========================================
-           LOADING
+           IMAGE LOADING
+        ========================================= */
+
+        .profile-image.loading-image {
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================================
+           IMAGE NOT FOUND
+        ========================================= */
+
+        .profile-image.image-error {
+
+            opacity: 0.40;
+
+        }
+
+
+        /* =========================================
+           LOADING OVERLAY
         ========================================= */
 
         .loading {
@@ -440,7 +453,6 @@
             justify-content: center;
 
             background:
-
                 rgba(
                     0,
                     0,
@@ -462,6 +474,10 @@
         }
 
 
+        /* =========================================
+           LOADER
+        ========================================= */
+
         .loader {
 
             width: 42px;
@@ -469,7 +485,6 @@
             height: 42px;
 
             border:
-
                 4px solid
                 rgba(
                     255,
@@ -483,7 +498,6 @@
             border-radius: 50%;
 
             animation:
-
                 spin 0.8s linear infinite;
 
         }
@@ -506,6 +520,13 @@
         ========================================= */
 
         @media (max-width: 480px) {
+
+            .screen {
+
+                padding: 20px;
+
+            }
+
 
             .app-title {
 
@@ -590,6 +611,8 @@
             </p>
 
 
+            <!-- USERNAME -->
+
             <div class="input-box">
 
                 <input
@@ -604,6 +627,8 @@
             </div>
 
 
+            <!-- PASSWORD -->
+
             <div class="input-box">
 
                 <input
@@ -616,6 +641,8 @@
             </div>
 
 
+            <!-- LOGIN -->
+
             <button
                 type="button"
                 id="loginButton"
@@ -624,6 +651,8 @@
                 LOGIN
             </button>
 
+
+            <!-- ERROR -->
 
             <div
                 id="errorMessage"
@@ -650,12 +679,16 @@
         <div class="main-content">
 
 
+            <!-- PROFILE IMAGE -->
+
             <img
                 id="profileImage"
                 class="profile-image"
                 alt="Profile Picture"
             >
 
+
+            <!-- NAME -->
 
             <div
                 id="profileName"
@@ -696,33 +729,28 @@
 
 
 // ======================================================
-// CONFIGURATION
+// GOOGLE APPS SCRIPT API
 // ======================================================
-
-
-// Google Apps Script Web App
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxqIrcVzanyJkNzwHrH_xMfUxNfqEXKJddBpfirJJclqul_WYfvIBfNcLBkH4OkmP2h/exec";
 
 
 // ======================================================
-// GITHUB CONFIG
+// GITHUB CONFIGURATION
 // ======================================================
 //
-// IMPORTANT:
-// এখানে আপনার GitHub username এবং repository name দিন.
+// CHANGE ONLY THESE TWO VALUES
 //
 // Example:
 //
-// GitHub:
-// https://github.com/net24bd/my-app
+// https://github.com/net24bd/MY-AI
 //
-// তাহলে:
+// Username:
+// net24bd
 //
-// GITHUB_USERNAME = "net24bd"
-// GITHUB_REPO = "my-app"
-//
+// Repository:
+// MY-AI
 // ======================================================
 
 const GITHUB_USERNAME =
@@ -730,24 +758,61 @@ const GITHUB_USERNAME =
 
 
 const GITHUB_REPO =
-"my-app";
+"MY-AI";
 
 
-// Profile folder
+// ======================================================
+// GITHUB BRANCH
+// ======================================================
+
+const GITHUB_BRANCH =
+"main";
+
+
+// ======================================================
+// PROFILE FOLDER
+// ======================================================
 
 const PROFILE_FOLDER =
 "profile";
 
 
-// Image extension
+// ======================================================
+// PROFILE IMAGE EXTENSIONS
+// ======================================================
+//
+// First JPG
+// Then JPEG
+// Then PNG
+// Then WEBP
+// ======================================================
 
-const PROFILE_EXTENSION =
-".jpg";
+const IMAGE_EXTENSIONS = [
+
+    ".jpg",
+
+    ".jpeg",
+
+    ".png",
+
+    ".webp"
+
+];
 
 
 // ======================================================
-// LOCAL STORAGE
+// DEFAULT IMAGE
 // ======================================================
+
+const DEFAULT_IMAGE =
+"";
+
+
+/*
+========================================================
+LOCAL STORAGE
+========================================================
+*/
 
 const STORAGE_LOGIN =
 "myApp_loggedIn";
@@ -816,14 +881,14 @@ document.getElementById(
 
 
 // ======================================================
-// LOADING
+// LOADING CONTROL
 // ======================================================
 
 function setLoading(
-    status
+    active
 ) {
 
-    if (status) {
+    if (active) {
 
         loading.classList.add(
             "active"
@@ -878,18 +943,31 @@ function saveSession(
     user
 ) {
 
-    localStorage.setItem(
-        STORAGE_LOGIN,
-        "true"
-    );
+    try {
+
+        localStorage.setItem(
+            STORAGE_LOGIN,
+            "true"
+        );
 
 
-    localStorage.setItem(
-        STORAGE_USER,
-        JSON.stringify(
-            user
-        )
-    );
+        localStorage.setItem(
+            STORAGE_USER,
+            JSON.stringify(
+                user
+            )
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Session save error:",
+            error
+        );
+
+    }
 
 }
 
@@ -960,22 +1038,38 @@ function clearSession() {
 
 
 // ======================================================
-// CREATE GITHUB PROFILE URL
+// CLEAN USERNAME
 // ======================================================
 
-function createProfileImageUrl(
+function cleanUsername(
     username
 ) {
 
-    const cleanUsername =
-        String(
-            username || ""
-        )
-        .trim()
-        .toLowerCase();
+    return String(
+        username || ""
+    )
+    .trim()
+    .toLowerCase();
+
+}
 
 
-    if (!cleanUsername) {
+// ======================================================
+// CREATE GITHUB RAW IMAGE URL
+// ======================================================
+
+function createGitHubImageUrl(
+    username,
+    extension
+) {
+
+    const cleanName =
+        cleanUsername(
+            username
+        );
+
+
+    if (!cleanName) {
 
         return "";
 
@@ -996,17 +1090,23 @@ function createProfileImageUrl(
             GITHUB_REPO
         ) +
 
-        "/main/" +
+        "/" +
+
+        encodeURIComponent(
+            GITHUB_BRANCH
+        ) +
+
+        "/" +
 
         PROFILE_FOLDER +
 
         "/" +
 
         encodeURIComponent(
-            cleanUsername
+            cleanName
         ) +
 
-        PROFILE_EXTENSION
+        extension
 
     );
 
@@ -1014,10 +1114,178 @@ function createProfileImageUrl(
 
 
 // ======================================================
-// SET PROFILE
+// IMAGE URL LIST
 // ======================================================
 
-function setProfile(
+function getProfileImageUrls(
+    username
+) {
+
+    const urls = [];
+
+
+    for (
+        let i = 0;
+        i < IMAGE_EXTENSIONS.length;
+        i++
+    ) {
+
+        urls.push(
+
+            createGitHubImageUrl(
+                username,
+                IMAGE_EXTENSIONS[i]
+            )
+
+        );
+
+    }
+
+
+    return urls;
+
+}
+
+
+// ======================================================
+// LOAD PROFILE IMAGE
+// ======================================================
+//
+// Try:
+//
+// username.jpg
+// username.jpeg
+// username.png
+// username.webp
+//
+// If one works, stop.
+// ======================================================
+
+function loadProfileImage(
+    username
+) {
+
+    const urls =
+        getProfileImageUrls(
+            username
+        );
+
+
+    if (
+        urls.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    profileImage.classList.add(
+        "loading-image"
+    );
+
+
+    profileImage.classList.remove(
+        "image-error"
+    );
+
+
+    let currentIndex =
+        0;
+
+
+    function tryNextImage() {
+
+        if (
+            currentIndex >=
+            urls.length
+        ) {
+
+            profileImage.classList.remove(
+                "loading-image"
+            );
+
+
+            profileImage.classList.add(
+                "image-error"
+            );
+
+
+            if (DEFAULT_IMAGE) {
+
+                profileImage.src =
+                    DEFAULT_IMAGE;
+
+            }
+
+
+            console.error(
+                "No profile image found for:",
+                username
+            );
+
+
+            return;
+
+        }
+
+
+        const imageUrl =
+            urls[
+                currentIndex
+            ];
+
+
+        currentIndex++;
+
+
+        const testImage =
+            new Image();
+
+
+        testImage.onload =
+            function() {
+
+                profileImage.classList.remove(
+                    "loading-image"
+                );
+
+
+                profileImage.classList.remove(
+                    "image-error"
+                );
+
+
+                profileImage.src =
+                    imageUrl;
+
+            };
+
+
+        testImage.onerror =
+            function() {
+
+                tryNextImage();
+
+            };
+
+
+        testImage.src =
+            imageUrl;
+
+    }
+
+
+    tryNextImage();
+
+}
+
+
+// ======================================================
+// SHOW PROFILE
+// ======================================================
+
+function showProfile(
     user
 ) {
 
@@ -1029,37 +1297,38 @@ function setProfile(
 
 
     // ==============================================
-    // NAME
-    // ==============================================
-
-    profileName.textContent =
-        user.name || "User";
-
-
-    // ==============================================
     // USERNAME
     // ==============================================
 
     const username =
-        user.username || "";
+        user.username
+            ? String(
+                user.username
+              ).trim()
+            : "";
 
 
     // ==============================================
-    // GITHUB IMAGE
+    // NAME
     // ==============================================
 
-    const imageUrl =
-        createProfileImageUrl(
-            username
-        );
-
-
-    profileImage.src =
-        imageUrl;
+    profileName.textContent =
+        user.name ||
+        username ||
+        "User";
 
 
     // ==============================================
-    // SHOW MAIN
+    // LOAD GITHUB IMAGE
+    // ==============================================
+
+    loadProfileImage(
+        username
+    );
+
+
+    // ==============================================
+    // HIDE LOGIN
     // ==============================================
 
     loginScreen.classList.remove(
@@ -1067,51 +1336,15 @@ function setProfile(
     );
 
 
+    // ==============================================
+    // SHOW MAIN
+    // ==============================================
+
     mainScreen.classList.add(
         "active"
     );
 
 }
-
-
-// ======================================================
-// IMAGE ERROR
-// ======================================================
-
-profileImage.addEventListener(
-    "error",
-    function() {
-
-        console.error(
-            "Profile image not found:",
-            this.src
-        );
-
-        /*
-         * এখানে চাইলে default image দিতে পারবেন।
-         */
-
-        this.src =
-            "https://raw.githubusercontent.com/" +
-
-            encodeURIComponent(
-                GITHUB_USERNAME
-            ) +
-
-            "/" +
-
-            encodeURIComponent(
-                GITHUB_REPO
-            ) +
-
-            "/main/" +
-
-            PROFILE_FOLDER +
-
-            "/default.jpg";
-
-    }
-);
 
 
 // ======================================================
@@ -1165,6 +1398,10 @@ async function login() {
     }
 
 
+    // ==============================================
+    // START LOADING
+    // ==============================================
+
     setLoading(
         true
     );
@@ -1210,7 +1447,23 @@ async function login() {
 
 
         // ==========================================
-        // READ RESPONSE
+        // CHECK RESPONSE
+        // ==========================================
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        // ==========================================
+        // GET JSON
         // ==========================================
 
         const result =
@@ -1224,7 +1477,7 @@ async function login() {
 
 
         // ==========================================
-        // SUCCESS
+        // LOGIN SUCCESS
         // ==========================================
 
         if (
@@ -1236,7 +1489,7 @@ async function login() {
                 result.user || {};
 
 
-            // Make sure username exists
+            // Ensure username exists
 
             if (
                 !user.username
@@ -1255,9 +1508,9 @@ async function login() {
             );
 
 
-            // Show main
+            // Show profile
 
-            setProfile(
+            showProfile(
                 user
             );
 
@@ -1265,7 +1518,7 @@ async function login() {
 
 
         // ==========================================
-        // FAILED
+        // LOGIN FAILED
         // ==========================================
 
         else {
@@ -1285,11 +1538,10 @@ async function login() {
 
     }
 
-
     catch (error) {
 
         console.error(
-            "Login error:",
+            "Login Error:",
             error
         );
 
@@ -1299,7 +1551,6 @@ async function login() {
         );
 
     }
-
 
     finally {
 
@@ -1323,7 +1574,7 @@ loginButton.addEventListener(
 
 
 // ======================================================
-// ENTER KEY
+// USERNAME ENTER
 // ======================================================
 
 usernameInput.addEventListener(
@@ -1342,6 +1593,10 @@ usernameInput.addEventListener(
 );
 
 
+// ======================================================
+// PASSWORD ENTER
+// ======================================================
+
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -1359,7 +1614,7 @@ passwordInput.addEventListener(
 
 
 // ======================================================
-// INITIALIZE
+// INITIALIZE APP
 // ======================================================
 
 function initializeApp() {
@@ -1368,31 +1623,42 @@ function initializeApp() {
         getSession();
 
 
+    // ==============================================
+    // EXISTING SESSION
+    // ==============================================
+
     if (savedUser) {
 
-        setProfile(
+        showProfile(
             savedUser
         );
 
-    }
-
-    else {
-
-        loginScreen.classList.add(
-            "active"
-        );
-
-        mainScreen.classList.remove(
-            "active"
-        );
+        return;
 
     }
+
+
+    // ==============================================
+    // NEW USER
+    // ==============================================
+
+    loginScreen.classList.add(
+        "active"
+    );
+
+
+    mainScreen.classList.remove(
+        "active"
+    );
+
+
+    usernameInput.focus();
 
 }
 
 
 // ======================================================
-// START
+// START APP
 // ======================================================
 
 initializeApp();
